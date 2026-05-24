@@ -1,0 +1,55 @@
+cmake:
+  application:
+    configuration-dir: '/Users/sunruimandepc/csse4011/firmware/finalproject'
+    source-dir: '/Users/sunruimandepc/csse4011/firmware/finalproject'
+  board:
+    name: 'xiao_ble'
+    path:
+     - '/Users/sunruimandepc/csse4011/zephyr/boards/seeed/xiao_ble'
+    qualifiers: 'nrf52840'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/bindings'
+    files:
+     - '/Users/sunruimandepc/csse4011/zephyr/boards/seeed/xiao_ble/xiao_ble.dts'
+     - '/Users/sunruimandepc/csse4011/firmware/finalproject/app.overlay'
+    include-dirs:
+     - '/Users/sunruimandepc/csse4011/firmware/include'
+     - '/Users/sunruimandepc/csse4011/modules/hal/stm32/dts'
+     - '/Users/sunruimandepc/csse4011/zephyr/include'
+     - '/Users/sunruimandepc/csse4011/zephyr/include/zephyr'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/common'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/vendor'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/rx'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/x86'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/xtensa'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/sparc'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/riscv'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/posix'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/arm64'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/arm'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts/arc'
+     - '/Users/sunruimandepc/csse4011/zephyr/dts'
+    user-files:
+     - '/Users/sunruimandepc/csse4011/firmware/finalproject/app.overlay'
+  kconfig:
+    files:
+     - '/Users/sunruimandepc/csse4011/zephyr/boards/seeed/xiao_ble/xiao_ble_defconfig'
+     - '/Users/sunruimandepc/csse4011/firmware/finalproject/prj.conf'
+    user-files:
+     - '/Users/sunruimandepc/csse4011/firmware/finalproject/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/Users/sunruimandepc/zephyr-sdk-0.17.4'
+  vendor-specific:
+    nordic:
+      svdfile: '/Users/sunruimandepc/csse4011/modules/hal/nordic/nrfx/mdk/nrf52840.svd'
+  zephyr:
+    version: '4.3.0'
+    zephyr-base: '/Users/sunruimandepc/csse4011/zephyr'
+version: '0.1.0'
+west:
+  command: '/Users/sunruimandepc/csse4011/.venv/bin/west build -p -b xiao_ble'
+  topdir: '/Users/sunruimandepc/csse4011'
+  version: '1.5.0'
