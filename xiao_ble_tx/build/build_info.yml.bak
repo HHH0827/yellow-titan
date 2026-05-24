@@ -1,0 +1,5 @@
+west:
+  command: /home/dayang/.local/bin/west build -p always -d FinalProject/xiao_ble_tx/build
+    -b xiao_ble/nrf52840/sense FinalProject/xiao_ble_tx
+  topdir: /home/dayang/csse4011
+  version: 1.5.0
