@@ -1,6 +1,6 @@
 # Project Libraries and Advanced Features
 
-This project uses four main groups of software libraries: ESP32-CAM Arduino libraries, Python computer-vision libraries, a project Kalman filter module, and Zephyr RTOS libraries for the XIAO BLE board. The final implementation uses Wi-Fi/HTTP image capture, OpenCV colour recognition, Kalman filtering, serial command transmission, BLE advertising, and a Zephyr watchdog timer for reliability.
+This project uses four main groups of software libraries: ESP32-CAM Arduino libraries, Python computer-vision libraries, a project Kalman filter module, and Zephyr RTOS libraries for the XIAO BLE boards. The final implementation uses Wi-Fi/HTTP image capture, OpenCV colour recognition, Kalman filtering, serial command transmission, BLE advertising, BLE scanning, PWM servo control, NVS flash storage, message queues, and Zephyr watchdog timers for reliability.
 
 ## 1. ESP32-CAM / Arduino Libraries
 
@@ -190,6 +190,7 @@ If firmware hangs -> feed stops -> watchdog resets the XIAO BLE board
 ```
 
 This is used as a reliability and robustness feature for the final demonstration.
+
 ## 6. Receiver / Servo Node Libraries and Features
 
 The receiver / servo node is implemented using Zephyr RTOS on the XIAO BLE nRF52840 board. This part of the system receives BLE colour commands, controls the servo motor, updates object counts, stores sorting statistics and improves firmware reliability.
@@ -250,6 +251,7 @@ Sorting statistics are saved to NVS flash
         ↓
 Watchdog is fed periodically in the main loop
 ```
+
 ### 6.4 Servo PWM Mapping
 
 | Colour Command | PWM Pulse Width | Approximate Servo Angle | Purpose |
@@ -267,7 +269,7 @@ Watchdog is fed periodically in the main loop
 | `2` | `green_count` | Number of green objects sorted |
 | `3` | `blue_count` | Number of blue objects sorted |
 | `4` | `unknown_count` | Number of unknown / rejected objects |
-| `5` | `total_object` | Total number of processed objects |
+| `5` | `total_count` | Total number of processed objects |
 
 The receiver uses NVS because the object counts should not be lost immediately after reset or power loss. This helps with testing, demonstration and KPI tracking.
 
@@ -287,4 +289,4 @@ py -3.12 "\\wsl.localhost\Ubuntu\home\dayang\csse4011\firmware\FinalProject\esp3
 
 ## 8. Short Explanation for Demonstration
 
-The ESP32-CAM uses the Arduino ESP32 camera and HTTP server libraries to provide a JPEG image endpoint. The computer uses OpenCV and NumPy to measure red, green, and blue percentages. A scalar Kalman Filter smooths these noisy measurements, then a threshold classifier decides whether the frame is red, green, blue, or unknown. PySerial sends the detected result to the XIAO BLE board. The XIAO BLE firmware uses Zephyr Bluetooth libraries to broadcast that command to the receiver board through BLE advertising. The XIAO BLE firmware also uses the Zephyr watchdog driver as a reliability feature, so the board can automatically reset if the firmware becomes stuck.
+The ESP32-CAM uses the Arduino ESP32 camera and HTTP server libraries to provide a JPEG image endpoint. The computer uses OpenCV and NumPy to measure red, green, and blue percentages. A scalar Kalman Filter smooths these noisy measurements, then a threshold classifier decides whether the frame is red, green, blue, or unknown. PySerial sends the detected result to the XIAO BLE transmitter. The transmitter uses Zephyr Bluetooth libraries to broadcast that command to the receiver board through BLE advertising. The receiver scans the BLE advertisement, decodes the colour command, controls the servo motor using PWM, updates the object counters, stores the counts using NVS flash storage, and uses watchdog protection to improve reliability.
