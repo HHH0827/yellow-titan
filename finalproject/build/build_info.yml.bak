@@ -1,0 +1,4 @@
+west:
+  command: /Users/sunruimandepc/csse4011/.venv/bin/west build -p -b xiao_ble
+  topdir: /Users/sunruimandepc/csse4011
+  version: 1.5.0
