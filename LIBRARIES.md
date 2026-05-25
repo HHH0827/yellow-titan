@@ -254,9 +254,9 @@ Watchdog is fed periodically in the main loop
 
 | Colour Command | PWM Pulse Width | Approximate Servo Angle | Purpose |
 |---|---:|---:|---|
-| `R` | `500 us` | `0°` | Red bin |
-| `G` | `1000 us` | `60°` | Green bin |
-| `B` | `1800 us` | `120°` | Blue bin |
+| `R` | `500 us` | `0°` | Red |
+| `G` | `1000 us` | `60°` | Green |
+| `B` | `1800 us` | `120°` | Blue |
 | `U` | `2500 us` | `180°` | Unknown / reject position |
 
 ### 6.5 NVS Stored Values
@@ -267,7 +267,7 @@ Watchdog is fed periodically in the main loop
 | `2` | `green_count` | Number of green objects sorted |
 | `3` | `blue_count` | Number of blue objects sorted |
 | `4` | `unknown_count` | Number of unknown / rejected objects |
-| `5` | `total_count` | Total number of processed objects |
+| `5` | `total_object` | Total number of processed objects |
 
 The receiver uses NVS because the object counts should not be lost immediately after reset or power loss. This helps with testing, demonstration and KPI tracking.
 
